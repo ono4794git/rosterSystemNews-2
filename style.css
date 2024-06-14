@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+html {
+    font-size: 100%;
+}
+body {
+    background-color: #fffeee; 
+    line-height: 1.7;
+    font-size: 16px;
+    font-family: "ヒラギノ丸ゴ Pro W4", "Hiragino Maru Gothic Pro", sans-serif;
+}
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100% ;
+}
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+.header-container {   
+    width: 350px;    
+    position: relative;
+}
+.header-container image {
+    width: 100%;
+}
+.header-wrapper {
+    display: flex;
+}
+.page-title {
+    font-family: "ヒラギノ丸ゴ Pro W4", "Hiragino Maru Gothic Pro", sans-serif;
+    position: absolute;    
+    font-size:24px;
+    color: white;
+    padding:0;
+    margin:0;
+    top: 50%;
+    left: 50%;
+     transform: translate(-50%, -50%);
+}
+.page-content p {
+    font-size: 16px;
+    font-family: "ヒラギノ丸ゴ Pro W4", "Hiragino Maru Gothic Pro", sans-serif;
+}
+h1 {
+    color: rgb(8, 46, 53);
+    font-family: "游ゴシック体", "Yu Gothic", "YuGothic";
+    text-shadow: 1px 3px 3px #777777;
+}
+h2 {
+    margin-bottom: 4px;
+    text-align: center;
+}
+h5 {
+    text-align: right;
+    margin-bottom: 12px;
+}
+article {
+    width: 75%;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-right: 4px;
+    background-color: #ffffff;
+}
+aside {
+    width: 25%;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 4px;
+    background-color: #f0f5f5;
+}
+aside img {
+    margin-left: 20px;
+    margin-top:  16px;
+    margin-bottom: 0px;
+}
+.page-main {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.list-main {
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+.img {
+    width: 160px;
+}
+
+aside .img-title {
+    font-size: 10px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+aside .img-text {
+    font-size: 10px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+.list-main {
+    list-style-type: decimal;
+}
+ul {
+    list-style-type: none;
+    margin-left: 24px;
+}
+.list-sub {
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+.list-sub2 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+h3 {
+    padding-top: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+table {
+    padding: 4px;
+}
+th {
+    font-size: 11px;
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 4px;
+}
+td {
+    font-size: 10px;
+    text-align: left;
+    padding-left: 4px;
+    padding-right: 4px;
+
+}
+.others {
+    padding-bottom: 16px;
+}
+
+.modal {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    position:fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0,4); /*背景色を透過グレーに*/
+    opacity: 0; /*初期状態*/
+    visibility: hidden;
+    transition: opacity 0.15s, visibility 0.15s; /* アニメーション効果*/
+}
+
+.modal-content {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* モーダルの閉じるボタン*/
+#close {
+    position: absolute;
+    top: 35px;
+    right: 25px;
+    padding-right: 10px;
+    padding-left:10px;
+    color: white;
+    background-color: blue;
+    border-radius: 10px 10px 10px 10px;  
+    opacity: 0.75;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
