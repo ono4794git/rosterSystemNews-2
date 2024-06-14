@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="勤務作成システム 6b-ASG-CHKのセル幅を調整">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勤務システム News 2</title>
+   
+    <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+    <header class="page-header header-wrapper">
+        <div class="header-container">
+            <h1><img class="logo" src="images/a0タイトルIMG.gif" alt=""></h1>
+            <h1 class="page-title">システムNews</h1>
+        </div>        
+    </header>  
+    <div class="page-content wrapper">
+        <h2>勤務システムの修正（《6b-ASG-CHK》の日付列幅を調整）</h2>
+        <h5>2024/06/14 vol.2</h5>  
+        <div class="page-main">
+            <article>
+                <ol>
+                    
+                    <li class="list-main">概要</li> 
+                         <p>《6b-ASG-CHK》の日付の列幅を《6a-FNL時間調整》の列幅に合わせる。</p>
+                         <p>理由は《6a-FNL時間調整》の[DS]ボタンで画面を分割した際に上下を見比べやすくするため。</p>
+                    <li class="list-main">修正方法</li> 
+                        <p>VBAの標準モジュールの数値を変更してリフレッシュをかけて更新します。</p>
+                        <ul>
+                            <li>(1)《6a-FNL時間調整》の列幅の確認</li>
+                                <ul>
+                                    <li>① VBAを開く</li>
+                                    <li>② 標準モジュール-Module2を選択して516行目付近の'With wS6a' を確認。</li>
+                                    <li>③ その下15行目ほどにある '.Columns("E:AW").ColumnWidth = 7.8' の幅を確認。この例では幅7.8</li>
+                                </ul>
+                            <li>(2) 《6b-ASG-CHK》の列幅を修正
+                                <ul>
+                                    <li>① Module2の616行目付近の'With wS6b' を確認。</li>
+                                    <li>② その下8行目ほどにある ' .Columns("E:AI").ColumnWidth = 5.25' の幅を先ほど(1)で確認した幅に変更する。
+                                        今回の例の場合   '.Columns("E:AI").ColumnWidth = 7.8' に変更。</li>
+                                </ul>
+                            </li>
+                            <li>(3) リフレッシュをかけ更新を完了させる</li>
+                        </ul>
+                    <li class="list-main">修正完了確認</li> 
+                        <p>正しく作動するか確認します</p>
+                        <ul>
+                            <li>① 《6a-FNL時間調整》の[DS]ボタンをクリックする</li>
+                            <li>② 上の画面と下の画面の日付が揃ったことを確認</li>
+                            <li>③ 《6a-FNL時間調整》の[DS]ボタンを再度クリックして画面をもとに戻す</li>
+                        </ul>
+                    <li class="list-main">その他</li>  
+                        <p class="others">基本的には勤務コース作成を《5a-DATA入力》で行い《5b-ASG確認》でアサイン状況を確認します。
+                            そして《6a-FNL時間調整》では時間調整が主となり、アサインの変更は多くはないと思います。<br>
+                            しかし場合によってはコース作成がほとんど完了した段階で、人員の変更により《6a-FNL時間調整》での大幅なアサイン変更が必要な場合もあるかと思います。
+                            その場合には《6b-ASG-CHK》をひとつの画面で表示させながら調整したいこともあると思いますので、その際に確認しやすいよう今回の調整を行いました。<br>
+                            <br>
+                            《6b-ASG-CHK》は資格区分での表示ですが、コース区分での詳細な確認は《6b3-CALC-CHK》を表示します。
+                            この《6b3-CALC-CHK》は《6b2-CALC-ASG》表をまとめたものですが、
+                            《6b2-CALC-ASG》は、勤務記号変換の逆パターンで、時間記号を勤務コース記号に計算式で変換したものであり、デイリーコース表の一覧表ともいえるものです。<br>
+                            (《6b2-CALC-ASG》は、コース表と同じ仕組みの計算式が組まれています。)<br>
+                            そして、この《6b2-CALC-ASG》を再度チェックにかけたものが《6b3-CALC-CHK》となります。<br>
+                            もしコース表に担当者がうまく反映されない場合は、この辺りを確認していただくと原因が分かる場合もあります。</p>
+                        
+                        <table border="1">
+                            <tr><th colspan="3">《6a-FNL時間調整》以降のCHK</th></tr>
+                            <tr>
+                                <th>シート名</th>
+                                <th>仕組み</th>
+                                <th>活用方法</th>
+                            </tr>
+                            <tr>
+                                <td>《6b-ASG-CHK》</td>
+                                <td>《6a-FNL時間調整》の資格区分(-s, -o など)をカウントする</td>
+                                <td>デイリーの資格者の過不足を確認</td>
+                            </tr>
+                            <tr>
+                                <td>《6b2-CALC-ASG》</td>
+                                <td>《6a-FNL時間調整》の時間記号を計算式によりコース記号(S1, H1など)に変換</td>
+                                <td>デイリーコース表にどう表示されるか確認</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>《6b3-CALC-CHK》</td>
+                                <td>《6b2-CALC-ASG》のコース記号をカウントする</td>
+                                <td>デイリーコースに対するアサインを確認</td>
+
+                            </tr>
+                        </table>   
+
+                </ol>
+            </article>
+            <aside>
+                <p class="img-title">※ クリックで拡大表示</p>
+
+                <p class="img"><img class="popup" src="images\a1wS6aを確認.jpg" alt="a1wS6aを確認"></p>
+                <p class="img-text">2.(1)②Module2を選択して516行目付近の'With wS6a' を確認</p>
+
+
+                <p class="img"><img class="popup" src="images\a26aFNLの幅を確認.gif" alt="a1wS6aを確認"></p>
+                <p class="img-text">2.(1)③'.Columns("E:AW").ColumnWidth = x.x' の幅の値を確認</p>
+
+                <p class="img"><img class="popup" src="images\b1ws6bを変更する.gif" alt="a1wS6aを確認"></p>
+                <p class="img-text">2.(2)①Module2の616行目付近'With wS6b' を確認</p>
+
+                <p class="img"><img class="popup" src="images\b2幅数値変更.gif" alt="a1wS6aを確認"></p>
+                <p class="img-text">2.(2)②'.Columns("E:AI").ColumnWidthの値を変更</p>
+
+                <p class="img"><img class="popup" src="images\c1DSボタンクリック.jpg" alt="a1wS6aを確認"></p>
+                <p class="img-text">3.①《6a-FNL時間調整》の[DS]ボタンをクリック</p>
+
+                <p class="img"><img class="popup" src="images\c2縦にそろったことを確認.gif" alt="a1wS6aを確認"></p>
+                <p class="img-text">3.②上の画面と下の画面の日付列のセル幅が揃ったことを確認</p>
+
+                <p class="img"><img class="popup" src="images\d16bchk.jpg" alt="wS6bを確認"></p>
+                <p class="img-text">4《6b-ASG-CHK》デイリーの資格者の過不足を確認</p>
+
+                <p class="img"><img class="popup" src="images\d26b2calcAsgn.jpg" alt="wS6bを確認"></p>
+                <p class="img-text">4《6b2-CALC-ASG》デイリーコース表にどう表示されるか確認</p>
+
+                <p class="img"><img class="popup" src="images\d36b3chk.jpg" alt="wS6bを確認"></p>
+                <p class="img-text">4《6b3-CALC-CHK》デイリーコースに対するアサインを確認</p>
+
+
+            </aside>
+        </div>
+        <p><br></p>
+    </div>  
+       
+ 
+    <div id="modal" class="modal">
+        <span id="close">OK</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script type="text/javascript" src="jsSysNews2.js" charset="UTF-8"></script>
+
+
+
+</body>
+</html>
